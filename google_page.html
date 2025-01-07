@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 5px;
+        padding: 20px;
+      }
+      .logo {
+        width: 300px;
+        height: 100px;
+        object-fit: contain;
+        margin-bottom: 20px;
+      }
+      nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        font-size: 14px;
+        margin-right: 10px;
+      }
+      nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      nav li {
+        display: inline-block;
+        margin-left: 10px;
+      }
+      a {
+        text-decoration: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+      }
+      .gmail:hover,
+      .images:hover {
+        text-decoration: underline;
+      }
+      .searchLabs {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .searchLabs img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+      .searchLabs:hover {
+        background-color: lightgrey;
+        border-radius: 50%;
+      }
+      .searchLabs:hover::after {
+        content: "Search Labs";
+        font-size: 12px;
+        position: absolute;
+        background-color: black;
+        color: white;
+        padding: 5px 5px;
+        border-radius: 5px;
+        display: block;
+        opacity: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .searchLabs:hover::after {
+        opacity: 0.5;
+      }
+      .apps {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .apps img {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
+      }
+      .apps:hover {
+        background-color: lightgrey;
+        border-radius: 50%;
+      }
+      .apps:hover::after {
+        content: "Google apps";
+        font-size: 12px;
+        position: absolute;
+        background-color: black;
+        color: white;
+        padding: 5px 5px;
+        border-radius: 5px;
+        display: block;
+        opacity: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .apps:hover::after {
+        opacity: 0.5;
+      }
+      .search-bar {
+        width: 700px;
+        height: 48px;
+        border: 1px solid #ccc;
+        border-radius: 30px;
+        padding: 1px 87px 1px 52px;
+        box-sizing: border-box;
+        line-height: 48px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: relative;
+        margin-top: 30px;
+        z-index: -1;
+      }
+      .search-bar input[type="text"] {
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: 16px;
+        padding: 0;
+      }
+      .searchIcon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+      }
+      .voiceAndLens {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+      }
+      .voice {
+        right: 45px;
+      }
+      .lens {
+        right: 15px;
+        margin-left: 20px;
+      }
+      .apps-container {
+        position: relative;
+        z-index: 9999;
+      }
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: auto;
+        right: 0;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        max-height: 470px; /* Set maximum height of the dropdown */
+        width: 370px;
+        overflow-y: auto;
+        border-radius: 30px;
+        z-index: 1000;
+      }
+      .dropdown-menu td:hover {
+        background-color: #f0f0f0; /* Light gray background on hover */
+        width: 112px;
+        height: 112px;
+      }
+      .dropdown-menu td {
+        width: 112px; /* Make cells fill the table width */
+        height: 112px;
+        text-align: center; /* Center content within cells */
+      }
+      table {
+        border-collapse: collapse;
+      }
+      td {
+        padding: 8px;
+        text-align: center;
+      }
+      .app-icon {
+        width: 50px;
+        height: 50px;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 5px;
+      }
+      .links {
+        display: flex;
+      }
+      .linkbox1 {
+        position: relative;
+        display: inline-block;
+        margin-top: 20px;
+        width: 112px;
+        height: 112px;
+      }
+      .linkbox1:hover {
+        background-color: #f0f0f0;
+        .moreVertical {
+          opacity: 1;
+        }
+      }
+      .link1 img {
+        height: 50px;
+        width: 50px;
+      }
+      .link1 {
+        padding: 10px;
+        border-radius: 50%;
+        background-color: lightgrey;
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .linkbox2 {
+        position: relative;
+        display: inline-block;
+        margin-top: 20px;
+        width: 112px;
+        height: 112px;
+      }
+      .linkbox2:hover {
+        background-color: #f0f0f0;
+        .moreVertical {
+          opacity: 1;
+        }
+      }
+      .link2 img {
+        height: 50px;
+        width: 50px;
+      }
+      .link2 {
+        padding: 10px;
+        border-radius: 50%;
+        background-color: lightgrey;
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .linkbox3 {
+        position: relative;
+        display: inline-block;
+        margin-top: 20px;
+        width: 112px;
+        height: 112px;
+      }
+      .linkbox3:hover {
+        background-color: #f0f0f0;
+        .moreVertical {
+          opacity: 1;
+        }
+      }
+      .link3 img {
+        height: 50px;
+        width: 50px;
+      }
+      .link3 {
+        padding: 10px;
+        border-radius: 50%;
+        background-color: lightgrey;
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .moreVertical {
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        top: 5px;
+        right: 5px;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+      figcaption {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="#" class="gmail">Gmail</a></li>
+          <li><a href="#" class="images">Images</a></li>
+          <li>
+            <a href="#" class="searchLabs">
+              <img src="images/experiment.png" alt="searchLabs" />
+            </a>
+          </li>
+          <li class="apps-container">
+            <a href="#" class="apps">
+              <img src="images/apps.png" alt="apps" />
+            </a>
+            <div class="dropdown-menu">
+              <table></table>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <div style="margin-top: 50px"></div>
+
+      <img
+        src="https://pngimg.com/uploads/google/google_PNG19644.png"
+        alt="Google Logo"
+        class="logo"
+      />
+      <div class="search-bar">
+        <img src="images/search.png" alt="searchIcon" class="searchIcon" />
+        <input type="text" placeholder="Search Google or type a URL" />
+        <img
+          src="images/voice.png"
+          alt="voiceIcon"
+          class="voiceAndLens voice"
+        />
+        <img src="images/lens.png" alt="lensIcon" class="voiceAndLens lens" />
+      </div>
+      <div class="links">
+        <div class="linkbox1">
+          <a href="https://www.youtube.com/" target="_blank">
+            <img src="images/youtube.png" alt="link1" class="link1" />
+            <figcaption>Youtube</figcaption>
+            <img
+              src="images/moreVertical.png"
+              alt="moreVertical"
+              class="moreVertical"
+            />
+          </a>
+        </div>
+        <div class="linkbox2">
+          <a href="https://github.com/" target="_blank">
+            <img src="images/github.png" alt="link2" class="link2" />
+            <figcaption>Github</figcaption>
+            <img
+              src="images/moreVertical.png"
+              alt="moreVertical"
+              class="moreVertical"
+            />
+          </a>
+        </div>
+        <div class="linkbox3">
+          <a href="https://www.naver.com/" target="_blank">
+            <img src="images/naver.png" alt="link3" class="link3" />
+            <figcaption>Naver</figcaption>
+            <img
+              src="images/moreVertical.png"
+              alt="moreVertical"
+              class="moreVertical"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const appsLink = document.querySelector(".apps");
+    const dropdownMenu = document.querySelector(".dropdown-menu");
+    const table = dropdownMenu.querySelector("table");
+    let isDropdownOpen = false;
+
+    const appData = [
+      { name: "Account", icon: "images/account.png" },
+      { name: "Search", icon: "images/google/google_search.png" },
+      { name: "Maps", icon: "images/google/google_maps.png" },
+      { name: "Youtube", icon: "images/google/google_youtube.png" },
+      { name: "Gemini", icon: "images/google/google_gemini.png" },
+      { name: "News", icon: "images/google/google_news.png" },
+      { name: "Gmail", icon: "images/google/google_gmail.png" },
+      { name: "Meet", icon: "images/google/google_meet.png" },
+      { name: "Chat", icon: "images/google/google_chat.png" },
+      { name: "Contacts", icon: "images/google/google_contacts.png" },
+      { name: "Drive", icon: "images/google/google_drive.png" },
+      { name: "Calendar", icon: "images/google/google_calendar.png" },
+      { name: "Play", icon: "images/google/google_play.png" },
+      { name: "Translate", icon: "images/google/google_translate.png" },
+      { name: "Photos", icon: "images/google/google_photos.png" },
+      { name: "My Ad Center", icon: "images/google/google_myadcenter.svg" },
+      { name: "Chrome", icon: "images/google/google_chrome.png" },
+      { name: "Shopping", icon: "images/google/google_shopping.png" },
+    ];
+
+    appData.forEach((app) => {
+      const row = document.createElement("tr");
+      const td = document.createElement("td");
+      const appIcon = document.createElement("img");
+      appIcon.src = app.icon;
+      appIcon.classList.add("app-icon");
+      td.appendChild(appIcon);
+      td.appendChild(document.createTextNode(app.name));
+
+      row.appendChild(td);
+      table.appendChild(row);
+    });
+
+    // Event listeners for showing/hiding dropdown
+    appsLink.addEventListener("click", () => {
+      if (!isDropdownOpen) {
+        createTable();
+        dropdownMenu.style.display = "block";
+        isDropdownOpen = true;
+      } else {
+        dropdownMenu.style.display = "none";
+        isDropdownOpen = false;
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (
+        !appsLink.contains(event.target) &&
+        !dropdownMenu.contains(event.target)
+      ) {
+        dropdownMenu.style.display = "none";
+        isDropdownOpen = false;
+      }
+    });
+
+    function createTable() {
+      table.innerHTML = "";
+
+      for (let i = 0; i < appData.length; i += 3) {
+        const row = document.createElement("tr");
+
+        // Create and populate 3 table cells per row
+        for (let j = 0; j < 3 && i + j < appData.length; j++) {
+          const td = document.createElement("td");
+          const app = appData[i + j];
+
+          if (app.name) {
+            const appIcon = document.createElement("img");
+            appIcon.src = app.icon;
+            appIcon.classList.add("app-icon");
+            td.appendChild(appIcon);
+            td.appendChild(document.createTextNode(app.name));
+          } else {
+            td.textContent = "";
+          }
+
+          row.appendChild(td);
+        }
+
+        table.appendChild(row);
+      }
+    }
+  </script>
+</html>
