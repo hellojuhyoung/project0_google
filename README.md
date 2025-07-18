@@ -36,8 +36,6 @@
 
 ![Google Main Page Screenshot](images/homepage-screenshot.png "A screenshot of the Google Main Page Clone.")
 
----
-
 **Dropdown Menu:**
 
 ![Dropdown Menu Screenshot](images/dropdown-menu.png "The Google apps dropdown menu in action.")
