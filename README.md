@@ -30,6 +30,18 @@
 
 ---
 
+## Screenshots
+
+**Google Main Page View:**
+
+![Google Main Page Screenshot](images/homepage-screenshot.png "A screenshot of the Google Main Page Clone.")
+
+**Dropdown Menu (if applicable):**
+
+![Dropdown Menu Screenshot](images/dropdown-menu.png "The Google apps dropdown menu in action.")
+
+---
+
 ## Overview
 
 This project is a front-end web development exercise that meticulously recreates the **Google search engine's main page** using **HTML** and **CSS**. It serves as a practical demonstration of layout design, semantic HTML structuring, and basic styling to mimic the iconic interface of Google.
@@ -76,6 +88,8 @@ This project is a static recreation of the Google search main page, demonstratin
         ├── voice.png
         └── youtube.png
 ```
+
+---
 
 ### Project Index
 
